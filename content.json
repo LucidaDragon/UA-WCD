@@ -1,0 +1,154 @@
+[
+	{
+		"Name": "Divinity",
+		"Path": "/Divinity",
+		"OffsetX": 0.25,
+		"OffsetY": 0,
+		"HasSubgroups": false,
+		"Items": [
+			{
+				"Name": "None",
+				"Description": "",
+				"Path": "/../Blank.png"
+			},
+			{
+				"Name": "Eudivine",
+				"Description": "",
+				"Path": "/Eudivine.png"
+			},
+			{
+				"Name": "Pseudodivine",
+				"Description": "",
+				"Path": "/Pseudodivine.png"
+			}
+		]
+	},
+	{
+		"Name": "Horizontal Cosmology",
+		"Path": "/HorizontalCosmology",
+		"OffsetX": 0,
+		"OffsetY": 0.25,
+		"HasSubgroups": false,
+		"Items": [
+			{
+				"Name": "Monoplane",
+				"Description": "",
+				"Path": "/Monoplane.png"
+			},
+			{
+				"Name": "Branching",
+				"Description": "",
+				"Path": "/Branching.png"
+			},
+			{
+				"Name": "Frequency",
+				"Description": "",
+				"Path": "/Frequency.png"
+			},
+			{
+				"Name": "Axial",
+				"Description": "",
+				"Path": "/Axial.png"
+			}
+		]
+	},
+	{
+		"Name": "Vertical Cosmology",
+		"Path": "/VerticalCosmology",
+		"OffsetX": 0.5,
+		"OffsetY": 0.25,
+		"HasSubgroups": false,
+		"Items": [
+			{
+				"Name": "Realspace",
+				"Description": "",
+				"Path": "/RealSpace.png"
+			},
+			{
+				"Name": "Snowglobe",
+				"Description": "",
+				"Path": "/Snowglobe.png"
+			},
+			{
+				"Name": "True Fluidspace",
+				"Description": "",
+				"Path": "/TrueFluidspace.png"
+			},
+			{
+				"Name": "False Fluidspace",
+				"Description": "",
+				"Path": "/FalseFluidspace.png"
+			}
+		]
+	},
+	{
+		"Name": "Psychics and Magics",
+		"Path": "/PsychicsAndMagic",
+		"OffsetX": 0.25,
+		"OffsetY": 0.5,
+		"HasSubgroups": true,
+		"Items": [
+			{
+				"Name": "None",
+				"Description": "",
+				"Path": "/../Blank.png"
+			},
+			{
+				"Name": "Psychics",
+				"Description": "",
+				"Path": "/Psychics",
+				"HasSubgroups": false,
+				"Items": [
+					{
+						"Name": "Mental Channeling",
+						"Description": "",
+						"Path": "/MentalChanneling.png"
+					},
+					{
+						"Name": "Ethereal",
+						"Description": "",
+						"Path": "/Ethereal.png"
+					},
+					{
+						"Name": "Psyonics",
+						"Description": "",
+						"Path": "/Psyonics.png"
+					},
+					{
+						"Name": "Mental Conjuration",
+						"Description": "",
+						"Path": "/MentalConjuration.png"
+					}
+				]
+			},
+			{
+				"Name": "Magics",
+				"Description": "",
+				"Path": "/Magics",
+				"HasSubgroups": false,
+				"Items": [
+					{
+						"Name": "Mana",
+						"Description": "",
+						"Path": "/Mana.png"
+					},
+					{
+						"Name": "Ethereal",
+						"Description": "",
+						"Path": "/Ethereal.png"
+					},
+					{
+						"Name": "Internal Qi",
+						"Description": "",
+						"Path": "/InternalQi.png"
+					},
+					{
+						"Name": "External Qi",
+						"Description": "",
+						"Path": "/ExternalQi.png"
+					}
+				]
+			}
+		]
+	}
+]

@@ -1,0 +1,286 @@
+<html>
+	<head>
+		<style>
+			.viewport
+			{
+				border-style: solid;
+				border-width: 1px;
+				border-color: black;
+				width: 300px;
+				height: 300px;
+			}
+
+			.groupbox
+			{
+				display: block;
+				padding: 5px;
+				border-style: solid;
+				border-radius: 5px;
+				border-width: 1px;
+				border-color: black;
+			}
+		</style>
+		<script>
+			content = null;
+			loaded = false;
+			slots = {};
+			images = {};
+
+			function ShowError(text) { document.body.innerText = "Error: " + text; }
+
+			function GetId(path)
+			{
+				let replaceDots = path.replaceAll(".", "_")
+				let replaceSlashes = replaceDots.replaceAll("/", "_");
+				return replaceSlashes;
+			}
+
+			function UpdateCanvas()
+			{
+				let canvas = document.getElementById("viewport");
+				let ctx = canvas.getContext("2d");
+
+				for (let i = 0; i < content.length; i++)
+				{
+					let selected = slots[content[i].Name];
+
+					if (selected === undefined)
+					{
+						continue;
+					}
+
+					if (selected.length === 1)
+					{
+						while (!images[selected[0].Path])
+						{
+							selected = slots[selected[0].Name];
+						}
+
+						ctx.drawImage(images[selected[0].Path], canvas.width * content[i].OffsetX, canvas.height * content[i].OffsetY);
+					}
+				}
+			}
+
+			function AddContentItem(target, path, item)
+			{
+				if (item.HasSubgroups)
+				{
+					let group = document.createElement("tr");
+					let columnA = document.createElement("td");
+					let columnB = document.createElement("td");
+					let label = document.createElement("label");
+					let dropDown = document.createElement("select");
+					let childArea = document.createElement("div");
+					dropDown.id = GetId(path + item.Path);
+					childArea.id = "children" + GetId(path + item.Path);
+					childArea.className = "groupbox";
+					childArea.style.display = "none";
+
+					label.htmlFor = dropDown.id;
+					label.innerText = item.Name;
+
+					for (let i = 0; i < item.Items.length; i++)
+					{
+						let childItem = item.Items[i];
+
+						if (childItem.Items)
+						{
+							let option = document.createElement("option");
+							option.innerText = childItem.Name;
+							option.sourceName = childItem.Name;
+							option.imagePath = path + item.Path + childItem.Path;
+
+							dropDown.appendChild(option);
+						}
+						else
+						{
+							AddContentItem(dropDown, path + item.Path, item.Items[i]);
+						}
+					}
+
+					for (let i = 0; i < item.Items.length; i++)
+					{
+						let childItem = item.Items[i];
+
+						if (childItem.Items)
+						{
+							let childElement = document.createElement("div");
+							childElement.id = GetId(path + item.Path + childItem.Path);
+							childElement.style.display = "none";
+
+							AddContentItem(childElement, path + item.Path, childItem);
+
+							childArea.appendChild(childElement);
+						}
+					}
+
+					dropDown.onchange = (e) =>
+					{
+						function OptionsContains(options, option)
+						{
+							for (let i = 0; i < options.length; i++)
+							{
+								if (options[i] === option) return true;
+							}
+
+							return false;
+						}
+
+						let hasVisibleElement = false;
+						let selected = [];
+						for (let i = 0; i < dropDown.options.length; i++)
+						{
+							let option = dropDown.options[i];
+							let name = GetId(option.imagePath);
+							let element = document.getElementById(name);
+
+							if (element !== null && element.tagName !== "OPTION")
+							{
+								if (OptionsContains(dropDown.selectedOptions, option))
+								{
+									element.style.display = "block";
+									hasVisibleElement = true;
+								}
+								else
+								{
+									element.style.display = "none";
+								}
+							}
+							
+							if (OptionsContains(dropDown.selectedOptions, option))
+							{
+								selected.push({ Name: option.sourceName, Path: option.imagePath });
+							}
+						}
+
+						if (hasVisibleElement)
+						{
+							childArea.style.display = "block";
+						}
+						else
+						{
+							childArea.style.display = "none";
+						}
+
+						slots[item.Name] = selected;
+
+						UpdateCanvas();
+					};
+
+					dropDown.onchange(null);
+
+					columnA.appendChild(label);
+					columnB.appendChild(dropDown);
+					let childAreaCell = document.createElement("td");
+					let childAreaRow = document.createElement("tr");
+					childAreaCell.colSpan = 2;
+					childAreaCell.appendChild(childArea);
+					childAreaRow.appendChild(childAreaCell);
+					group.appendChild(columnA);
+					group.appendChild(columnB);
+					target.appendChild(group);
+					target.appendChild(childAreaRow);
+				}
+				else
+				{
+					if (item.Items)
+					{
+						let group = document.createElement("tr");
+						let columnA = document.createElement("td");
+						let columnB = document.createElement("td");
+						let label = document.createElement("label");
+						let dropDown = document.createElement("select");
+						dropDown.id = GetId(path + item.Path);
+
+						label.htmlFor = dropDown.id;
+						label.innerText = item.Name;
+
+						for (let i = 0; i < item.Items.length; i++)
+						{
+							AddContentItem(dropDown, path + item.Path, item.Items[i]);
+						}
+
+						dropDown.onchange = (e) =>
+						{
+							let selected = [];
+
+							for (let i = 0; i < dropDown.selectedOptions.length; i++)
+							{
+								let element = dropDown.selectedOptions[i];
+
+								if (element.imagePath)
+								{
+									selected.push({ Name: element.sourceName, Path: element.imagePath });
+								}
+							}
+
+							slots[item.Name] = selected;
+
+							UpdateCanvas();
+						};
+
+						dropDown.onchange(null);
+
+						columnA.appendChild(label);
+						columnB.appendChild(dropDown);
+						group.appendChild(columnA);
+						group.appendChild(columnB);
+						target.appendChild(group);
+					}
+					else
+					{
+						let option = document.createElement("option");
+
+						if (item.Description === "" || !item.Description)
+						{
+							option.innerText = item.Name;
+						}
+						else
+						{
+							option.innerText = item.Name + " - " + item.Description;
+						}
+
+						option.sourceName = item.Name;
+						option.imagePath = path + item.Path;
+						option.id = GetId(option.imagePath);
+
+						let img = new Image();
+						img.src = option.imagePath;
+						images[option.imagePath] = img;
+						
+						target.appendChild(option);
+					}
+				}
+			}
+
+			function ShowContent()
+			{
+				if ((content !== null) && loaded)
+				{
+					for (let i = 0; i < content.length; i++)
+					{
+						AddContentItem(document.forms[0], ".", content[i]);
+					}
+				}
+
+				setTimeout((e) =>
+				{
+					UpdateCanvas();
+				}, 100)
+			}
+
+			fetch("./content.json").then((result) =>
+			{
+				result.json().then((value) =>
+				{
+					content = value;
+					ShowContent();
+				}).catch(ShowError);
+			}).catch(ShowError);
+		</script>
+	</head>
+	<body onload="loaded = true; ShowContent();">
+		<form id="entry" class="groupbox"></form>
+		<canvas id="viewport" class="viewport" width="2000" height="2000"></canvas>
+	</body>
+</html>
