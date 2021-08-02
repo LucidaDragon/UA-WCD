@@ -8,17 +8,17 @@
 		"Items": [
 			{
 				"Name": "None",
-				"Description": "",
+				"Description": "A godless realm",
 				"Path": "/../Blank.png"
 			},
 			{
 				"Name": "Eudivine",
-				"Description": "",
+				"Description": "Reality altering gods exist in your setting (see divine in the APS document)",
 				"Path": "/Eudivine.png"
 			},
 			{
 				"Name": "Pseudodivine",
-				"Description": "",
+				"Description": "The universe or a cosmic force acts to cause the divine (see pseudodivine in the APS document)",
 				"Path": "/Pseudodivine.png"
 			}
 		]
@@ -32,22 +32,22 @@
 		"Items": [
 			{
 				"Name": "Monoplane",
-				"Description": "",
+				"Description": "No other planes of existance, just the material world.",
 				"Path": "/Monoplane.png"
 			},
 			{
 				"Name": "Branching",
-				"Description": "",
+				"Description": "Planes are seperated by their position on a branching hirachy (parralel timelines are usually in this category).",
 				"Path": "/Branching.png"
 			},
 			{
 				"Name": "Frequency",
-				"Description": "",
+				"Description": "Planes are seperated by their vibrational frequency and are thus arranged in single line.",
 				"Path": "/Frequency.png"
 			},
 			{
 				"Name": "Axial",
-				"Description": "",
+				"Description": "Planes are seperated by their position on an extradimensional axis (so boyend x y z and w), there may be more than one axis.",
 				"Path": "/Axial.png"
 			}
 		]
@@ -61,22 +61,22 @@
 		"Items": [
 			{
 				"Name": "Realspace",
-				"Description": "",
+				"Description": "Space as we know it in our world.",
 				"Path": "/Realspace.png"
 			},
 			{
 				"Name": "Snowglobe",
-				"Description": "",
+				"Description": "The world is all there is. There is no space.",
 				"Path": "/Snowglobe.png"
 			},
 			{
 				"Name": "True Fluidspace",
-				"Description": "",
+				"Description": "The world is emersed in a fluid of some kind.",
 				"Path": "/TrueFluidspace.png"
 			},
 			{
 				"Name": "False Fluidspace",
-				"Description": "",
+				"Description": "Some effect causes a fluid like environment.",
 				"Path": "/FalseFluidspace.png"
 			}
 		]
@@ -90,61 +90,61 @@
 		"Items": [
 			{
 				"Name": "None",
-				"Description": "",
+				"Description": "Default",
 				"Path": "/../Blank.png"
 			},
 			{
 				"Name": "Psychics",
-				"Description": "",
+				"Description": "Families of psychic powers (excluding divine).",
 				"Path": "/Psychics",
 				"HasSubgroups": false,
 				"Items": [
 					{
 						"Name": "Mental Channeling",
-						"Description": "",
+						"Description": "Psychic systems that rely on focus to transmit energy directly via metabolic processes.",
 						"Path": "/MentalChanneling.png"
 					},
 					{
 						"Name": "Ethereal",
-						"Description": "",
+						"Description": "Psychic systems that rely on an ether to draw energy via metabolic processes.",
 						"Path": "/Ethereal.png"
 					},
 					{
 						"Name": "Psyonics",
-						"Description": "",
+						"Description": "Psychic systems that rely on focus to cause changes in the frequencies of various waves via metabolic processes.",
 						"Path": "/Psyonics.png"
 					},
 					{
 						"Name": "Mental Conjuration",
-						"Description": "",
+						"Description": "Psychic systems that rely on bringing matter into reality from an abstract realm via metabolic processes.",
 						"Path": "/MentalConjuration.png"
 					}
 				]
 			},
 			{
 				"Name": "Magics",
-				"Description": "",
+				"Description": "Families of magic (excluding pseudodivine).",
 				"Path": "/Magics",
 				"HasSubgroups": false,
 				"Items": [
 					{
 						"Name": "Mana",
-						"Description": "",
+						"Description": "Magic systems that rely on a mana pool to store energy.",
 						"Path": "/Mana.png"
 					},
 					{
 						"Name": "Ethereal",
-						"Description": "",
+						"Description": "Magic systems that rely on an ether to draw energy.",
 						"Path": "/Ethereal.png"
 					},
 					{
 						"Name": "Internal Qi",
-						"Description": "",
+						"Description": "Magic systems that rely on the life force within the body of the caster to store energy.",
 						"Path": "/InternalQi.png"
 					},
 					{
 						"Name": "External Qi",
-						"Description": "",
+						"Description": "Magic systems that rely on the life force of the environment to draw energy.",
 						"Path": "/ExternalQi.png"
 					}
 				]
